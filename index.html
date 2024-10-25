@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 50px;
+        background-color: #f7f7f7;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    .button {
+        background-color: #25D366; /* WhatsApp green */
+        border: none;
+        color: white;
+        padding: 15px 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+        margin: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .button:hover {
+        background-color: #128C7E; /* Darker WhatsApp green */
+    }
+</style>
+</head>
+<body>
+
+<h1>Botão de Emergência</h1>
+
+<!-- Botão de Emergência para WhatsApp -->
+<button class="button" onclick="sendWhatsAppMessage()">Enviar Mensagem para WhatsApp</button>
+
+<!-- Botão para Compartilhar Localização em Tempo Real -->
+<button class="button" onclick="openGoogleMaps()">Ativar Compartilhamento de Local em Tempo Real</button>
+
+<script>
+    // Função para enviar uma mensagem pelo WhatsApp
+    function sendWhatsAppMessage() {
+        const phoneNumber = '5521995141312'; // Substitua pelo número desejado no formato internacional, ex: 5511999999999
+        const message = encodeURIComponent('Primeiro teste de pulseira');
+        window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+    }
+
+    // Função para abrir o Google Maps e instruir o usuário a compartilhar o local em tempo real
+    function openGoogleMaps() {
+        alert('Será necessário ativar o compartilhamento de localização em tempo real no Google Maps manualmente.');
+        window.open('https://www.google.com/maps', '_blank');
+    }
+</script>
+
+</body>
+</html>
