@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localização em Tempo Real</title>
+</head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f7f7f7;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .button {
+            background-color: #25D366; /* WhatsApp green */
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .button:hover {
+            background-color: #128C7E; /* Darker WhatsApp green */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Compartilhar Localização de Emergência</h1>
+
+    <!-- Botão para compartilhar a localização via WhatsApp -->
+    <button class="button" onclick="shareLocationViaWhatsApp()">Compartilhar Localização no WhatsApp</button>
+
+    <script>
+        // Função para compartilhar localização no WhatsApp
+        function shareLocationViaWhatsApp() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    const googleMapsUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
+                    const phoneNumber = '5521995141312'; // Substitua pelo número desejado no formato internacional, ex: 5511999999999
+                    const message = encodeURIComponent(`Esta é minha localização de emergência: ${googleMapsUrl}, estou com problemas.`);
+                    
+                    // Abrir o WhatsApp com a mensagem de localização
+                    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+                }, function (error) {
+                    alert("Não foi possível acessar sua localização. Verifique as permissões.");
+                });
+            } else {
+                alert("A geolocalização não é suportada neste navegador.");
+            }
+        }
+    </script>
+
+</body>
+</html>
